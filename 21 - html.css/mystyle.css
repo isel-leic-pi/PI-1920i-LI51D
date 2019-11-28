@@ -1,0 +1,34 @@
+table, th, td {
+	border-width: 1px;
+	border-style: solid;
+	border-collapse: collapse
+}
+
+th {
+	background-color: #7f7f7f
+}
+
+.random-text {
+	background-color: red
+}
+
+body > p {
+	color: green
+}
+
+#year {
+	font-size: 300%
+}
+
+a:visited {
+	color: orange;
+}
+
+td:nth-child(1),
+td:nth-child(3) {
+	text-align: center
+}
+
+tr:nth-child(even) {
+	background-color: #cccccc
+}
