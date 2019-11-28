@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ISEL - LEIC - PI</title>
+	</head>
+	<body onload="prepare()">
+		<h1 id='isel'>ISEL</h1>
+		<h1 id='leic'>LEIC</h1>
+		
+		<input type="button" value="Press me!" onclick="toggleAll()"/>
+		
+		<script>
+			const isel = document.getElementById('isel');
+			const leic = document.getElementById('leic');			
+			console.log(isel.toString());
+			console.log(leic.toString());
+			
+			function prepare() {
+				leic.style.visibility = 'hidden';
+				
+				setInterval(toggleAll, 2000);
+			}
+			
+			function toggle(comp) {
+				if (comp.style.visibility == 'hidden') {
+					comp.style.visibility = 'visible';
+				} else {
+					comp.style.visibility = 'hidden';
+				}
+			}
+			
+			function toggleAll() {
+				toggle(isel);
+				toggle(leic);
+			}
+		</script>
+	</body>
+</html>

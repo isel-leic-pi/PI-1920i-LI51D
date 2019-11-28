@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ISEL - LEIC - PI</title>
+	</head>
+	<body>
+		<textarea id='logs' style="width: 95%; height: 10em; position: absolute; bottom: 10px"></textarea>
+		
+		<div id='theDiv' class="meusDivs"></div>
+
+		<div id='theDivX' style="background-color: yellow">
+			<p>Dentro do theDivX</p> 
+			<div></div> 
+			<p>Fim do theDivX</p> 
+			
+		</div>
+		
+		<script>
+			document.write('<p>An afterthought</p>');
+		
+			const logs = document.getElementById('logs');
+			
+			function print(text) {
+				logs.innerHTML = text + '\r\n' + logs.innerHTML;
+			}
+			
+			print('teste 1');
+			print('teste 2');
+			print('teste 3');
+			
+			const theDiv = document.getElementById('theDiv');
+			theDiv.innerHTML = 'ISEL - LEIC - PI';
+
+			const theDiv2 = document.getElementsByTagName('div');
+			print(theDiv2.toString());
+			print(theDiv2.length);
+			print(theDiv2[0]);
+
+			const theDiv3 = document.getElementsByClassName('meusDivs');
+			print(theDiv3.toString());
+			print(theDiv3.length);
+			print(theDiv3[0]);
+			
+			const theDivs = document.querySelectorAll('.meusDivs');
+			print(theDivs.toString());
+			print(theDivs.length);
+			print(theDivs[0]);
+			
+			const divX = document.getElementById('theDivX');
+			
+			divX.getElementsByTagName('div')[0]
+				.innerHTML = '(div interior)';
+			
+			const newButton = document.createElement('BUTTON');
+			newButton.innerHTML = "I'm new here";
+			newButton.style.color='red'
+			
+			divX.addEventListener(
+				'click',
+				(event) =>  { print("Clicked on theDivX"); event.stopPropagation(); },
+				true
+			);
+			
+			newButton.addEventListener(
+				'click',
+				() =>  { print("Clicked on newButton"); },
+				true
+			);
+			
+			newButton.addEventListener(
+				'click',
+				() =>  { alert('Hello!'); },
+				true
+			);
+			
+			divX.appendChild(newButton);
+			
+		</script>
+	</body>
+</html>
