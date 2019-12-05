@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ITEMS</title>
+		<style>
+			nav {
+				margin-bottom: 20px
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<a href="/">Home</a> | Insert | <a href="list.html">List</a>
+		</nav>
+
+		<!-- form action='/items' method='POST' -->
+		<div>
+			<label for='itemName'>Item: </label>
+			<input type='text' id='itemName'>
+			<input type='button' id='butInsert' value='Insert'>
+		</div>
+		<!-- /form -->
+		
+		<script>
+			const itemName = document.querySelector('#itemName');
+			const butInsert = document.querySelector('#butInsert');
+			
+			butInsert.addEventListener('click', () => {
+				const nameToInsert = itemName.value;
+				if (nameToInsert.length == 0) {
+					alert('Item is empty');
+					return;
+				} 
+				
+				fetch('/items', {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					body: JSON.stringify({
+						name: nameToInsert
+					})
+				})
+				.then(response => {
+					/*alert(
+						response.status +
+						' ' +
+						response.statusText
+					);*/
+					return response.json()
+				})
+				.then(body => {
+					//alert(JSON.stringify(body));
+					location.assign('/list.html');
+				});
+			});
+		</script>
+	</body>
+</html>

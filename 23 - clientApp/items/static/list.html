@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ITEMS</title>
+		<style>
+			nav {
+				margin-bottom: 20px
+			}
+			h1 img {
+				height: 80px;
+				margin-right: 10px;
+				vertical-align: text-bottom
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	</head>
+	<body>
+		<nav>
+			<a href="/">Home</a> | <a href="insert.html">Insert</a> | List
+		</nav>
+		<h1><img src="images/warehouse.jpg"><span class="htext">Items</span></h1>
+
+		<div id='itemsContainer'>
+			<ul>
+				<li>Item 1</li>
+				<li>Item 2</li>
+				<li>Item 3</li>
+			</ul>
+		</div>
+		
+		<script>
+			const itemsListBase =
+				'<ul>' +
+					'{{#each items}}' +
+						'<li><strong>' +
+							'{{this}}' +
+						'</strong></li>' +
+					'{{/each}}' +
+				'</ul>';
+		
+			const itemsListTemplate =
+				Handlebars.compile(itemsListBase);
+		
+			const itemsContainer =
+				document.querySelector(
+					'#itemsContainer'
+				);
+				
+			fetch('/items')
+			.then(response => {
+				/*
+				alert(
+					response.status +
+					' ' +
+					response.statusText
+				);
+				*/
+				return response.json()
+			})
+			.then(body => {
+				itemsContainer.innerHTML = 
+					//ulFromArray(body.items);
+					itemsListTemplate(body);
+			})
+			
+			function ulFromArray(array) {
+				let res = '<ul>';
+				for (i in array) {
+					res += '<li>' +  array[i] + '</li>';
+				}
+				res += '</ul>'
+				return res;
+			}
+
+		</script>
+	</body>
+</html>
