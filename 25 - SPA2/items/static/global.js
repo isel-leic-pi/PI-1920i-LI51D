@@ -11,6 +11,13 @@ const main = `
 	<div id="mainContainer"></div>
 `;
 
+const setContents = function (html) {
+	const mainContainer =
+		document.querySelector('#mainContainer');
+
+	mainContainer.innerHTML = html;
+}
+
 function nop() {}
 
 const modDefault = function () {

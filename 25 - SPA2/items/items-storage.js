@@ -16,7 +16,7 @@ function storage (host, port) {
 		
 		'search': function (name) {
 			return request
-				.get(`${baseUrl}/${name}/_search`)
+				.get(`${baseUrl}/${name}/_search?size=10000`)
 				.then(body => {
 					console.log('res', body);
 					
